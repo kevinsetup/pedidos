@@ -1,0 +1,148 @@
+<div class="flex flex-col items-center mt-4 px-4 w-full">
+    <div class="w-full py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        <div class="flex flex-col lg:flex-row gap-3 my-4">
+            <div class="flex flex-col w-full lg:w-1/2">
+                <label>Fecha de Registro: </label>
+                <input type="date" class="w-full input-secondary" type="text" value="2023-01-12">
+            </div>
+            <div class="flex flex-col w-full lg:w-1/2">
+                <label>Fecha de Entrega: </label>
+                <input type="date" class="w-full input-secondary" type="text" value="2023-01-20">
+            </div>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-3 lg:justify-between my-3">
+            <div class="lg:w-1/3 w-full flex flex-row gap-3 items-center">
+                <span>Mostrar</span>
+                <div class="flex items-center">
+                    <select class="input-secondary">
+                        <option value="" selected>10</option>
+                        <option value="">20</option>
+                        <option value="">30</option>
+                        <option value="">40</option>
+                    </select>
+                </div>
+                <span>registros</span>
+            </div>
+            <input class="w-full lg:w-1/3 input-default" type="text"
+                placeholder="Ingrese el código o nombre del producto">
+        </div>
+        <div class="container-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th> N°</th>
+                        <th> Código</th>
+                        <th> Nombre</th>
+                        <th> Precio</th>
+                        <th> Cantidad</th>
+                        <th> Total</th>
+                        <th> Foto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>000001 </td>
+                        <td>ACEITE BALDE </td>
+                        <td> S/. 10.00</td>
+                        <td>
+                            <input (keyup)="final = $event.target.value * 10" type="number" class="w-16 input-secondary"
+                                value="1" />
+                        </td>
+                        <td>
+                            S/. {{final}}.00
+                        </td>
+                        <td (click)="viewProduct()"><mat-icon svgIcon="heroicons_outline:eye"></mat-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>000002 </td>
+                        <td>ALF X 1 INTEGRAL MED. </td>
+                        <td>S/. 12.00</td>
+
+                        <td>
+                            <input (keyup)="true" type="number" class="w-16 input-secondary" value="1" />
+                        </td>
+                        <td>
+                            S/. 12.00
+                        </td>
+                        <td><mat-icon svgIcon="heroicons_outline:eye"></mat-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>000003 </td>
+                        <td>ALF X 12 TAPER </td>
+                        <td> S/. 20.00</td>
+
+                        <td>
+                            <input (keyup)="true" type="number" class="w-16 input-secondary" value="1" />
+                        </td>
+                        <td>
+                            S/. 20.00
+                        </td>
+                        <td><mat-icon svgIcon="heroicons_outline:eye"></mat-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>000004 </td>
+                        <td>ALF X 16 VAINILLA </td>
+                        <td> S/. 8.00</td>
+
+                        <td>
+                            <input (keyup)="true" type="number" class="w-16 input-secondary" value="1" />
+                        </td>
+                        <td>
+                            S/. 8.00
+                        </td>
+                        <td><mat-icon svgIcon="heroicons_outline:eye"></mat-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>000005 </td>
+                        <td>ALF X 16 CHOCOLATE </td>
+                        <td> S/.16.00</td>
+
+                        <td>
+                            <input (keyup)="true" type="number" class="w-16 input-secondary" value="1" />
+                        </td>
+                        <td>
+                            S/.16.00
+                        </td>
+                        <td><mat-icon svgIcon="heroicons_outline:eye"></mat-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>000006 </td>
+                        <td>ALF X 1 CORAZON BOLSA </td>
+                        <td> S/. 15.00</td>
+                        <td>
+                            <input (keyup)="true" type="number" class="w-16 input-secondary" value="1" />
+                        </td>
+                        <td>
+                            S/. 15.00
+                        </td>
+                        <td><mat-icon svgIcon="heroicons_outline:eye"></mat-icon>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot class="bg-white">
+                    <tr>
+                        <th colspan="4"></th>
+                        <th class="text-sm leading-5 text-gray-500"> <b>Total:</b> </th>
+                        <th colspan="2" class="text-sm leading-5 text-gray-500"> <b> S/.{{final}}.00 </b></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="w-full flex justify-center my-3">
+            <textarea class="w-full lg:w-1/2 input-secondary" placeholder="Notas"></textarea>
+        </div>
+        <div class="w-full flex justify-center my-3">
+            <button class="w-full lg:w-1/5 btn-default">Guardar</button>
+        </div>
+    </div>

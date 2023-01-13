@@ -61,6 +61,40 @@ export const appRoutes: Route[] = [
             {path: 'home', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)},
         ]
     },
+     //Pedidos routes
+     {
+        path: '',
+        canMatch: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: InitialDataResolver,
+        },
+        children: [
+            {path: 'pedidos/catalogo', loadChildren: () => import('app/modules/pedidos/catalogo/catalogo.module').then(m => m.CatalogoModule)},
+        ]
+    },
+    {
+        path: '',
+        canMatch: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: InitialDataResolver,
+        },
+        children: [
+            {path: 'pedidos/gestion', loadChildren: () => import('app/modules/pedidos/gestionpedidos/gestionpedidos.module').then(m => m.GestionpedidosModule)},
+        ]
+    },
+    {
+        path: '',
+        canMatch: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: InitialDataResolver,
+        },
+        children: [
+            {path: 'pedidos/hacerpedido', loadChildren: () => import('app/modules/pedidos/hacerpedidos/hacerpedidos.module').then(m => m.HacerpedidosModule)},
+        ]
+    },
 
     // Admin routes
     {
