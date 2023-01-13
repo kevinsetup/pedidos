@@ -1,4 +1,69 @@
 /* ----------------------------------------------------------------------------------------------------- */
 /*  @ Main Tailwind file for injecting utilities.
 /* ----------------------------------------------------------------------------------------------------- */
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn-default {
+    @apply rounded-lg bg-blue-500 p-3 text-white hover:bg-blue-700 shadow-lg;
+  }
+
+  .btn-default[disabled] {
+    @apply rounded-lg bg-blue-300 p-3 text-white shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply p-3 rounded-lg bg-green-500  text-white hover:bg-green-700 shadow-lg;
+  }
+
+  .btn-optional {
+    @apply p-3 rounded-lg bg-cyan-500  text-white hover:bg-cyan-700 shadow-lg;
+  }
+
+  .btn-optional-2 {
+    @apply p-3 rounded-lg bg-red-500  text-white hover:bg-red-700 shadow-lg;
+  }
+
+  .input-default {
+    @apply p-3 rounded-lg bg-white shadow-lg;
+  }
+
+  .input-secondary {
+    @apply bg-white border rounded focus:border-primary p-3 shadow-lg;
+    
+  }
+
+  .input-secondary[disabled] {
+    @apply bg-slate-200 border rounded focus:border-primary p-3 shadow-lg;
+  }
+
+  .sm-input-secondary {
+    @apply bg-white border rounded focus:border-primary p-1 shadow-lg;
+  }
+
+  .container-table {
+    @apply overflow-x-auto border-b border-gray-200 shadow rounded-lg;
+
+    table {
+      @apply min-w-full;
+
+      thead,
+      tr,
+      th {
+        @apply px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50;
+      }
+      tbody {
+        tr,
+        td {
+          @apply px-6 py-4 border-b border-gray-200 text-sm leading-5 text-gray-500  bg-white;
+        }
+      }
+    }
+  }
+
+  .card{
+    @apply  bg-white shadow rounded-lg;
+  }
+}
