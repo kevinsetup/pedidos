@@ -10,6 +10,7 @@ import { customConfirm, customMessage } from '../../../utils/dialog.util';
 export class GestionpedidosComponent {
   activeModalRegCompra = false;
   activeModificar = false;
+  activeVerDetalle = false;
 
   openTab = 1;
   dropdownPopoverShow = false;

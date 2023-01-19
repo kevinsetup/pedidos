@@ -51,10 +51,7 @@
                         </li>
                     </ul>
                 </div>
-
-
                 <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-
 
                     <div class="px-4 py-5 flex-auto">
 
@@ -67,10 +64,9 @@
                                 *ngIf="activeModificar == true"></app-modificarpedido>
                         </div>
 
-
-                        <div class="tab-content tab-space">
+                        <div  class="tab-content tab-space">
                             <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
-                                <div *ngIf="activeModalRegCompra == false">
+                                <div  *ngIf="activeModalRegCompra == false">
                                     <div class="container-table mt-3">
                                         <table>
                                             <thead>
@@ -182,7 +178,7 @@
                             <div [ngClass]="{'hidden': openTab !== 3, 'block': openTab === 3}">
                                 <div *ngIf="activeModalRegCompra == false">
 
-                                    <div class="container-table mt-3">
+                                    <div [ngClass]="" class="container-table mt-3">
                                         <table>
                                             <thead>
                                                 <tr>
@@ -262,8 +258,5 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </div>

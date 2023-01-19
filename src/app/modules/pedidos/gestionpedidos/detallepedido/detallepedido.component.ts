@@ -9,6 +9,7 @@ import { showExitConfirm } from '../../../../utils/dialog.util';
 export class DetallepedidoComponent {
   @Output() eventEmitter = new EventEmitter<Boolean>(); 
 
+  verdetalle:boolean = false;
   showModal3() {
   
         this.eventEmitter.emit(false)
