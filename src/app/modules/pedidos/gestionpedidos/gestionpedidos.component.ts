@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { createPopper } from '@popperjs/core';
+import { customConfirm, customMessage } from '../../../utils/dialog.util';
 
 @Component({
   selector: 'app-gestionpedidos',
@@ -42,4 +43,32 @@ export class GestionpedidosComponent {
     console.log(event)
 
   }
+  confirmar(){
+    customConfirm('¿Desea confirmar el pedido?', '¡Esta acción no se podrá revertir!')
+    .then((res)=>{
+      if(res.isConfirmed){
+        customMessage('¡Éxito!', 'Se ha confirmado el pedido')
+      }
+    })
+  }
+  modificar(){
+
+  }
+  cancelar(){
+    customConfirm('¿Desea cancelar el pedido?', '¡Esta acción no se podrá revertir!')
+    .then((res)=>{
+      if(res.isConfirmed){
+        customMessage('¡Éxito!', 'Se ha cancelado el pedido')
+      }
+    })
+  }
+  aprobar(){
+    customConfirm('¿Desea aprobar el pedido?', '¡Esta acción no se podrá revertir!')
+    .then((res)=>{
+      if(res.isConfirmed){
+        customMessage('¡Éxito!', 'Se ha aprobado el pedido')
+      }
+    })
+  }
+
 }

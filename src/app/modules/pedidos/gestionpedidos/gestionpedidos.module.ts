@@ -4,7 +4,8 @@ import { Route, RouterModule } from '@angular/router';
 import { GestionpedidosComponent } from './gestionpedidos.component';
 import { FormsModule } from '@angular/forms';
 import { DetallepedidoComponent } from './detallepedido/detallepedido.component';
-
+import { MatIconModule } from '@angular/material/icon';
+import { ModificarpedidoComponent } from './modificarpedido/modificarpedido.component';
 const exampleRoutes: Route[] = [
   {
       path     : '',
@@ -15,12 +16,14 @@ const exampleRoutes: Route[] = [
 @NgModule({
   declarations: [
     GestionpedidosComponent,
-    DetallepedidoComponent
+    DetallepedidoComponent,
+    ModificarpedidoComponent
   ],
   imports: [
     RouterModule.forChild(exampleRoutes),
     CommonModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ]
 })
 export class GestionpedidosModule { }
