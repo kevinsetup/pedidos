@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { showSaveConfirm, showAddSucces } from '../../../../utils/dialog.util';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { showUpdateSucces, showUpdateConfirm } from '../../../../utils/dialog.util';
+import { showExitConfirm } from '../../../../utils/dialog.util';
 
 @Component({
   selector: 'app-modificarpedido',
@@ -8,12 +9,24 @@ import { showSaveConfirm, showAddSucces } from '../../../../utils/dialog.util';
 })
 export class ModificarpedidoComponent {
   final:number = 10;
-  
+  @Output() eventEmitter = new EventEmitter<Boolean>(); 
+
   showModal(){
-    showSaveConfirm().then((res)=>{
+    showUpdateConfirm().then((res)=>{
       if(res.isConfirmed){
-        showAddSucces()
+        showUpdateSucces()
+        this.eventEmitter.emit(false)
+
       }
     })
   }
+  showModal3() {
+    showExitConfirm().then((res)=>{
+      if(res.isConfirmed){
+        this.eventEmitter.emit(false)
+
+      }
+    })
+
+}
 }

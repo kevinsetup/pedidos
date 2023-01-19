@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { showExitConfirm } from '../../../../utils/dialog.util';
 
 @Component({
   selector: 'app-detallepedido',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./detallepedido.component.scss']
 })
 export class DetallepedidoComponent {
+  @Output() eventEmitter = new EventEmitter<Boolean>(); 
 
+  showModal3() {
+  
+        this.eventEmitter.emit(false)
+   
+  }
 }

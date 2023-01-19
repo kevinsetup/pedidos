@@ -9,7 +9,7 @@ import { customConfirm, customMessage } from '../../../utils/dialog.util';
 })
 export class GestionpedidosComponent {
   activeModalRegCompra = false;
-
+  activeModificar = false;
 
   openTab = 1;
   dropdownPopoverShow = false;
@@ -52,7 +52,7 @@ export class GestionpedidosComponent {
     })
   }
   modificar(){
-
+    this.activeModificar = true;
   }
   cancelar(){
     customConfirm('¿Desea cancelar el pedido?', '¡Esta acción no se podrá revertir!')
