@@ -5,7 +5,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
     {
         id   : 'example',
         title: 'Example',
-        type : 'basic',
+        type : 'spacer',
         icon : 'heroicons_outline:chart-pie',
         link : '/example'
     },

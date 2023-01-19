@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import Swal from 'sweetalert2';
+import { showSaveConfirm, showAddSucces } from '../../../utils/dialog.util';
 
 @Component({
   selector: 'app-hacerpedidos',
@@ -8,10 +8,12 @@ import Swal from 'sweetalert2';
 })
 export class HacerpedidosComponent {
   final:number = 10;
-  viewProduct() {
-    Swal.fire({
-      imageUrl: 'https://metroio.vtexassets.com/arquivos/ids/198256/Aceite-Vegetal-Cil-Balde-20-Litros-1-239226.jpg?v=637713860628630000',
-      imageAlt: 'ACEITE BALDE',
+  
+  showModal(){
+    showSaveConfirm().then((res)=>{
+      if(res.isConfirmed){
+        showAddSucces()
+      }
     })
   }
 }

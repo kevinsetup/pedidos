@@ -1,28 +1,25 @@
 <div class="flex flex-col mt-8 px-4 w-full">
     <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <div
-            *ngIf="activeModalRegCompra == false && activeModalTransCompra == false && activeModalProvCompra == false && activeModalProvCompra2 == false">
+        <div *ngIf="activeModalRegCompra == false">
 
 
-            <div class="flex flex-row space-x-2">
-
-                <div class="w-full">
-                    <label for="">Desde</label>
-                    <input type="date" class="border rounded px-2 focus:border-primary w-full py-3 bg-white shadow-lg">
-                </div>
-
-                <div class="w-full">
-                    <label for="">Hasta</label>
-                    <input type="date" class="border rounded px-2 focus:border-primary w-full py-3 bg-white shadow-lg">
-                </div>
+            <div class="flex flex-col w-full lg:w-1/2">
+                <label>Fecha:</label>
+                <select class="input-secondary">
+                    <option selected> Todo</option>
+                    <option>Úlitmos 3 meses</option>
+                    <option>Últimos 6 meses</option>
+                    <option>2023</option>
+                    <option>2022</option>
+                    <option>2021</option>
+                </select>
             </div>
         </div>
 
 
         <div class="flex flex-wrap">
             <div class="w-full">
-                <div *ngIf="activeModalRegCompra == false && activeModalTransCompra == false && activeModalProvCompra == false 
-                && activeModalProvCompra2 == false">
+                <div *ngIf="activeModalRegCompra == false">
                     <ul class="flex flex-col mb-0 list-none lg:flex-wrap pt-3 pb-4 lg:flex-row">
                         <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
                             <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal"
@@ -60,21 +57,10 @@
 
 
                     <div class="px-4 py-5 flex-auto">
+
                         <div *ngIf="activeModalRegCompra == true && openTab === 1">
-                            <app-registro-compras (eventEmitter)="activeModalRegCompra = $event"
-                                *ngIf="activeModalRegCompra == true"></app-registro-compras>
-
-                        </div>
-                        <div
-                            *ngIf="(activeModalTransCompra == true && openTab === 2) || (activeModalProvCompra == true && openTab === 3)">
-                            <app-ordenes-transferidas (eventEmitter)="activeModalTransCompra = $event"
-                                *ngIf="(activeModalTransCompra == true) || (activeModalProvCompra == true)"></app-ordenes-transferidas>
-
-                        </div>
-                        <div *ngIf="activeModalProvCompra2 == true && openTab === 3">
-                            <app-registro-servicios (eventEmitter)="activeModalProvCompra2 = $event"
-                                *ngIf="activeModalProvCompra2 == true"></app-registro-servicios>
-
+                            <app-detallepedido (eventEmitter)="activeModalRegCompra = $event"
+                                *ngIf="activeModalRegCompra == true"></app-detallepedido>
                         </div>
 
 
@@ -82,192 +68,108 @@
                         <div class="tab-content tab-space">
                             <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
                                 <div *ngIf="activeModalRegCompra == false">
-                                    <div class="overflow-x-auto">
-
-                                        <table class="relative overflow-x-auto shadow-md sm:rounded-lg lg:w-full">
-
+                                    <div class="container-table mt-3">
+                                        <table>
                                             <thead>
                                                 <tr>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        id	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Fecha realizada	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Fecha de entrega	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Monto Total	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Monto Total	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Nombre empresa	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Vendedor </th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Opciones</th>
-                                                
-                                                
-                                                  
+                                                    <th>N° </th>
+                                                    <th>Fecha realizada </th>
+                                                    <th>Fecha de entrega </th>
+                                                    <th>Monto Total </th>
+                                                    <th>Nombre empresa </th>
+                                                    <th>Vendedor </th>
+                                                    <th>Opciones</th>
                                                 </tr>
                                             </thead>
-
-                                            <tbody class="bg-white">
+                                            <tbody>
                                                 <tr>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="flex items-center">
-
-
-                                                            <div class="ml-4">
-                                                                <div
-                                                                    class="text-sm font-medium leading-5 text-gray-900">
-                                                                    05/01/2023
-                                                                </div>
-                                                            </div>
+                                                    <td>1</td>
+                                                    <td> 05/01/2023 </td>
+                                                    <td> 10/01/2023 </td>
+                                                    <td> 100.00 </td>
+                                                    <td> DEGUSTACIÓN </td>
+                                                    <td> BREÑA HILDA RIOS </td>
+                                                    <td (click)="activeModalRegCompra = true">
+                                                        <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="w-6 h-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                                            </svg>
                                                         </div>
                                                     </td>
-
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">05/01/2023</div>
-                                                    </td>
-
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <span
-                                                            class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">BOLETA
-                                                            DE VENTA</span>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">FF12-12 </div>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">20100055237</div>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">ALICORP S.A.A.
-                                                        </div>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">52.54</div>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                                              </svg>
-                                                              
-
-
-                                                        </div>
-                                                    </td>
-                                              
-
-                                                
                                                 </tr>
-
-
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                             <div [ngClass]="{'hidden': openTab !== 2, 'block': openTab === 2}">
-                                <div *ngIf="activeModalTransCompra == false">
-                                    <div class="flex flex-row space-x-4">
-                                    
-
-                                    </div>
-                                    <div class="relative overflow-x-auto">
-
+                                <div *ngIf="activeModalRegCompra == false">
+                                    <div class="container-table mt-3">
                                         <table class="relative overflow-x-auto shadow-md sm:rounded-lg lg:w-full">
-
                                             <thead>
                                                 <tr>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        id	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Fecha realizada	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Fecha de entrega	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Monto Total	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Monto Total	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Nombre empresa	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Vendedor </th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Opciones</th>
-                                                
-                                                
-                                                  
+                                                    <th>id </th>
+                                                    <th>Fecha realizada </th>
+                                                    <th>Fecha de entrega </th>
+                                                    <th>Monto Total </th>
+                                                    <th>Monto Total </th>
+                                                    <th>Nombre empresa </th>
+                                                    <th>Vendedor </th>
+                                                    <th>Opciones</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody class="bg-white">
                                                 <tr>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                    <td>
                                                         <div class="flex items-center">
-
 
                                                             <div class="ml-4">
                                                                 <div
                                                                     class="text-sm font-medium leading-5 text-gray-900">
-                                                                    05/01/2023
-                                                                </div>
+                                                                    05/01/2023 </div>
                                                             </div>
                                                         </div>
                                                     </td>
 
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">05/01/2023</div>
+                                                    <td>
+                                                        <div>05/01/2023</div>
                                                     </td>
 
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                    <td>
                                                         <span
                                                             class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">BOLETA
                                                             DE VENTA</span>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">FF12-12 </div>
+                                                    <td>
+                                                        <div>FF12-12 </div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">20100055237</div>
+                                                    <td>
+                                                        <div>20100055237</div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">ALICORP S.A.A.
+                                                    <td>
+                                                        <div>ALICORP S.A.A.
                                                         </div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">52.54</div>
+                                                    <td>
+                                                        <div>52.54</div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                                              </svg>
-                                                              
+                                                    <td>
+                                                        <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="w-6 h-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                                            </svg>
 
 
                                                         </div>
                                                     </td>
-                                              
 
-                                                
+
+
                                                 </tr>
 
 
@@ -277,104 +179,77 @@
                                 </div>
                             </div>
                             <div [ngClass]="{'hidden': openTab !== 3, 'block': openTab === 3}">
-                                <div *ngIf="activeModalProvCompra == false && activeModalProvCompra2== false">
+                                <div *ngIf="activeModalRegCompra == false">
 
-                                    <div class="flex flex-row space-x-4">
-
-
-                                       
-
-
-
-                                    </div>
-
-
-                                    <div class="relative overflow-x-auto">
+                                    <div class="container-table mt-3">
 
                                         <table class="relative overflow-x-auto shadow-md sm:rounded-lg lg:w-full">
 
                                             <thead>
                                                 <tr>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        id	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Fecha realizada	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Fecha de entrega	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Monto Total	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Monto Total	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Nombre empresa	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Vendedor </th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Opciones</th>
-                                                
-                                                
-                                                  
+                                                    <th>id </th>
+                                                    <th>Fecha realizada </th>
+                                                    <th>Fecha de entrega </th>
+                                                    <th>Monto Total </th>
+                                                    <th>Monto Total </th>
+                                                    <th>Nombre empresa </th>
+                                                    <th>Vendedor </th>
+                                                    <th>Opciones</th>
+
+
+
                                                 </tr>
                                             </thead>
 
                                             <tbody class="bg-white">
                                                 <tr>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                    <td>
                                                         <div class="flex items-center">
-
 
                                                             <div class="ml-4">
                                                                 <div
                                                                     class="text-sm font-medium leading-5 text-gray-900">
-                                                                    05/01/2023
-                                                                </div>
+                                                                    05/01/2023 </div>
                                                             </div>
                                                         </div>
                                                     </td>
 
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">05/01/2023</div>
+                                                    <td>
+                                                        <div>05/01/2023</div>
                                                     </td>
 
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                    <td>
                                                         <span
                                                             class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">BOLETA
                                                             DE VENTA</span>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">FF12-12 </div>
+                                                    <td>
+                                                        <div>FF12-12 </div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">20100055237</div>
+                                                    <td>
+                                                        <div>20100055237</div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">ALICORP S.A.A.
+                                                    <td>
+                                                        <div>ALICORP S.A.A.
                                                         </div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">52.54</div>
+                                                    <td>
+                                                        <div>52.54</div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                                              </svg>
-                                                              
+                                                    <td>
+                                                        <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="w-6 h-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                                            </svg>
 
 
                                                         </div>
                                                     </td>
-                                              
 
-                                                
+
+
                                                 </tr>
 
 
@@ -384,93 +259,76 @@
                                 </div>
                             </div>
                             <div [ngClass]="{'hidden': openTab !== 4, 'block': openTab === 4}">
-                                <div *ngIf="activeModalCuentaPagar == false">
+                                <div *ngIf="activeModalRegCompra == false">
 
-                                    <div class="relative overflow-x-auto">
+                                    <div class="container-table mt-3">
                                         <table class="relative overflow-x-auto shadow-md sm:rounded-lg lg:w-full">
 
                                             <thead>
                                                 <tr>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        id	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Fecha realizada	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Fecha de entrega	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Monto Total	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Monto Total	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Nombre empresa	</th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Vendedor </th>
-                                                    <th
-                                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                                        Opciones</th>
-                                                
-                                                
-                                                  
+                                                    <th>id </th>
+                                                    <th>Fecha realizada </th>
+                                                    <th>Fecha de entrega </th>
+                                                    <th>Monto Total </th>
+                                                    <th>Monto Total </th>
+                                                    <th>Nombre empresa </th>
+                                                    <th>Vendedor </th>
+                                                    <th>Opciones</th>
+
+
+
                                                 </tr>
                                             </thead>
 
                                             <tbody class="bg-white">
                                                 <tr>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                    <td>
                                                         <div class="flex items-center">
-
 
                                                             <div class="ml-4">
                                                                 <div
                                                                     class="text-sm font-medium leading-5 text-gray-900">
-                                                                    05/01/2023
-                                                                </div>
+                                                                    05/01/2023 </div>
                                                             </div>
                                                         </div>
                                                     </td>
 
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">05/01/2023</div>
+                                                    <td>
+                                                        <div>05/01/2023</div>
                                                     </td>
 
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                    <td>
                                                         <span
                                                             class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">BOLETA
                                                             DE VENTA</span>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">FF12-12 </div>
+                                                    <td>
+                                                        <div>FF12-12 </div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">20100055237</div>
+                                                    <td>
+                                                        <div>20100055237</div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">ALICORP S.A.A.
+                                                    <td>
+                                                        <div>ALICORP S.A.A.
                                                         </div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">52.54</div>
+                                                    <td>
+                                                        <div>52.54</div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                        <div class="text-sm leading-5 text-gray-500">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                                              </svg>
-                                                              
+                                                    <td>
+                                                        <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="w-6 h-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                                            </svg>
 
 
                                                         </div>
                                                     </td>
-                                              
 
-                                                
+
+
                                                 </tr>
 
 

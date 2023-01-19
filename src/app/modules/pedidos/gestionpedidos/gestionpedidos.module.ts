@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
 import { GestionpedidosComponent } from './gestionpedidos.component';
 import { FormsModule } from '@angular/forms';
+import { DetallepedidoComponent } from './detallepedido/detallepedido.component';
 
 const exampleRoutes: Route[] = [
   {
@@ -13,7 +14,8 @@ const exampleRoutes: Route[] = [
 
 @NgModule({
   declarations: [
-    GestionpedidosComponent
+    GestionpedidosComponent,
+    DetallepedidoComponent
   ],
   imports: [
     RouterModule.forChild(exampleRoutes),

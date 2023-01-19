@@ -8,10 +8,6 @@ import { createPopper } from '@popperjs/core';
 })
 export class GestionpedidosComponent {
   activeModalRegCompra = false;
-  activeModalTransCompra = false;
-  activeModalProvCompra = false;
-  activeModalProvCompra2 = false;
-  activeModalCuentaPagar = false;
 
 
   openTab = 1;
