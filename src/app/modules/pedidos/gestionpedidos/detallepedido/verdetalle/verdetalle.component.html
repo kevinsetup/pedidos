@@ -1,1 +1,56 @@
-<p>verdetalle works!</p>
+<div class="w-full flex flex-row justify-between">
+    <div class="w-full flex flex-1 justify-center">
+        <h1 class="text-2xl p-3">Verificar Productos</h1>
+    </div>
+    <div class="relative flex justify-end p-3">
+        <button (click)="hideOrder()" class="btn-secondary">Volver</button>
+    </div>
+</div>
+
+<div class="grid gap-2">
+    <div
+        class="w-full lg:max-w-full lg:flex lg:justify-center"
+        *ngFor="let producto of detailProducts"
+    >
+        <div
+            class="shadow-lg h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+            style="
+                background-image: url('data:image/jpeg;base64,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');
+            "
+            title="Woman holding a mug"
+        ></div>
+        <div
+            class="border-r shadow-lg border-b border-l border-gray-200 lg:border-l-0 lg:border-t bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
+        >
+            <div class="mb-8">
+                <div class="flex flex-row justify-between">
+                    <p class="text-sm text-gray-600 flex items-center">
+                        Codigo: {{ producto.productId }}
+                    </p>
+                    <p
+                        class="text-sm text-black font-bold flex items-center ml-5"
+                    >
+                        PU: {{ producto.unitPrice }}
+                    </p>
+                    <p
+                        class="text-sm text-black font-bold flex items-center ml-5"
+                    >
+                        Cantidad: {{ producto.quantity }}
+                    </p>
+                    <p
+                        class="text-sm text-black font-bold flex items-center ml-5"
+                    >
+                        Total:
+                        {{
+                            (producto.quantity * producto.unitPrice).toFixed(2)
+                        }}
+                    </p>
+                </div>
+
+                <div class="font-bold text-xl mt-3">
+                    {{ producto.productName }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

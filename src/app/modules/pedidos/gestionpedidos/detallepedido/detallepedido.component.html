@@ -1,4 +1,4 @@
-<app-verdetalle (eventEmitter)="verdetalle = $event" *ngIf="verdetalle"></app-verdetalle>
+<app-verdetalle (hideDetail)="verdetalle = $event" *ngIf="verdetalle"></app-verdetalle>
 
 <ng-container *ngIf="!verdetalle" >
     <div class="w-full flex flex-row justify-between">
@@ -39,7 +39,7 @@
                     </p>
                 </div>
     
-                <div class=" font-bold text-xl mb-2 mt-3 text-red-500">PEDIDO REEMBOLSADO</div>
+                <div class=" font-bold text-xl mb-2 mt-3 ">PEDIDO REEMBOLSADO</div>
                 <p class="text-gray-700 text-base">Este producto ha sido reembolsado el día 02/12/22</p>
             </div>
     
