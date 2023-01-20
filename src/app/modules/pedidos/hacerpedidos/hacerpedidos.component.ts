@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { showSaveConfirm, showAddSucces } from '../../../utils/dialog.util';
+import { customConfirm2, customMessage } from '../../../utils/dialog.util';
 
 @Component({
   selector: 'app-hacerpedidos',
@@ -11,9 +11,13 @@ export class HacerpedidosComponent {
 
   fechaActual = new Date().toISOString().split('T')[0];
   showModal(){
-    showSaveConfirm().then((res)=>{
-      if(res.isConfirmed){
-        showAddSucces()
+   
+    customConfirm2('¿Desea crear o confirmar el pedido?','¡Esta acción no se podrá revertir!', {buttonAccept: 'Crear', buttonCancel: 'Confirmar'}).then((result) => {
+      if(result.isConfirmed){
+        customMessage('¡Éxito!','Se ha creado el pedido')
+      }else{
+        customMessage('¡Éxito!','Se ha confirmado el pedido')
+
       }
     })
   }
