@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
 import { HacerpedidosComponent } from './hacerpedidos.component';
 import {MatIconModule} from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 const exampleRoutes: Route[] = [
   {
@@ -19,7 +20,8 @@ const exampleRoutes: Route[] = [
   imports: [
     RouterModule.forChild(exampleRoutes),
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ]
 })
 export class HacerpedidosModule { }

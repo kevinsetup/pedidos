@@ -7,8 +7,9 @@ import { showSaveConfirm, showAddSucces } from '../../../utils/dialog.util';
   styleUrls: ['./hacerpedidos.component.scss']
 })
 export class HacerpedidosComponent {
-  final:number = 10;
-  
+  final:number = 3.70;
+
+  fechaActual = new Date().toISOString().split('T')[0];
   showModal(){
     showSaveConfirm().then((res)=>{
       if(res.isConfirmed){
