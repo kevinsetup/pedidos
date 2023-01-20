@@ -8,7 +8,7 @@ import { showExitConfirm } from '../../../../utils/dialog.util';
   styleUrls: ['./modificarpedido.component.scss']
 })
 export class ModificarpedidoComponent {
-  final:number = 10;
+  final:number = 3.70;
   @Output() eventEmitter = new EventEmitter<Boolean>(); 
 
   showModal(){

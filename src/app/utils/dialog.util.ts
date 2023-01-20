@@ -115,6 +115,28 @@ export function customConfirm(
     });
 }
 
+export function customConfirm2(
+    title: string,
+    msg: string,
+    options?: { buttonCancel: string, buttonAccept: string }
+): Promise<SweetAlertResult> {
+
+    return Swal.fire({
+        heightAuto: false,
+        title: title,
+        icon: 'warning',
+        text: msg,
+        showCancelButton: true,
+        focusConfirm: false,
+        showCloseButton: true,
+        cancelButtonText: options?.buttonCancel ? options.buttonCancel : 'Cancelar',
+        confirmButtonText: options?.buttonAccept ? options.buttonAccept : 'Continuar',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#22C55E',
+    });
+}
+
+
 export function customMessage(title: string, msg: string): Promise<SweetAlertResult> {
     return Swal.fire({
         icon: 'success',
