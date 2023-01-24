@@ -8,16 +8,15 @@ import { InitialDataResolver } from 'app/app.resolvers';
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const appRoutes: Route[] = [
-
     // Redirect empty path to '/example'
-    {path: '', pathMatch : 'full', redirectTo: 'example'},
+    { path: '', pathMatch: 'full', redirectTo: 'example' },
 
     // Redirect signed-in user to the '/example'
     //
     // After the user signs in, the sign-in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'example'},
+    { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'example' },
 
     // Auth routes for guests
     {
@@ -25,15 +24,45 @@ export const appRoutes: Route[] = [
         canMatch: [NoAuthGuard],
         component: LayoutComponent,
         data: {
-            layout: 'empty'
+            layout: 'empty',
         },
         children: [
-            {path: 'confirmation-required', loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule)},
-            {path: 'forgot-password', loadChildren: () => import('app/modules/auth/forgot-password/forgot-password.module').then(m => m.AuthForgotPasswordModule)},
-            {path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.module').then(m => m.AuthResetPasswordModule)},
-            {path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule)},
-            {path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module').then(m => m.AuthSignUpModule)}
-        ]
+            {
+                path: 'confirmation-required',
+                loadChildren: () =>
+                    import(
+                        'app/modules/auth/confirmation-required/confirmation-required.module'
+                    ).then((m) => m.AuthConfirmationRequiredModule),
+            },
+            {
+                path: 'forgot-password',
+                loadChildren: () =>
+                    import(
+                        'app/modules/auth/forgot-password/forgot-password.module'
+                    ).then((m) => m.AuthForgotPasswordModule),
+            },
+            {
+                path: 'reset-password',
+                loadChildren: () =>
+                    import(
+                        'app/modules/auth/reset-password/reset-password.module'
+                    ).then((m) => m.AuthResetPasswordModule),
+            },
+            {
+                path: 'sign-in',
+                loadChildren: () =>
+                    import('app/modules/auth/sign-in/sign-in.module').then(
+                        (m) => m.AuthSignInModule
+                    ),
+            },
+            {
+                path: 'sign-up',
+                loadChildren: () =>
+                    import('app/modules/auth/sign-up/sign-up.module').then(
+                        (m) => m.AuthSignUpModule
+                    ),
+            },
+        ],
     },
 
     // Auth routes for authenticated users
@@ -42,12 +71,24 @@ export const appRoutes: Route[] = [
         canMatch: [AuthGuard],
         component: LayoutComponent,
         data: {
-            layout: 'empty'
+            layout: 'empty',
         },
         children: [
-            {path: 'sign-out', loadChildren: () => import('app/modules/auth/sign-out/sign-out.module').then(m => m.AuthSignOutModule)},
-            {path: 'unlock-session', loadChildren: () => import('app/modules/auth/unlock-session/unlock-session.module').then(m => m.AuthUnlockSessionModule)}
-        ]
+            {
+                path: 'sign-out',
+                loadChildren: () =>
+                    import('app/modules/auth/sign-out/sign-out.module').then(
+                        (m) => m.AuthSignOutModule
+                    ),
+            },
+            {
+                path: 'unlock-session',
+                loadChildren: () =>
+                    import(
+                        'app/modules/auth/unlock-session/unlock-session.module'
+                    ).then((m) => m.AuthUnlockSessionModule),
+            },
+        ],
     },
 
     // Landing routes
@@ -55,14 +96,20 @@ export const appRoutes: Route[] = [
         path: '',
         component: LayoutComponent,
         data: {
-            layout: 'empty'
+            layout: 'empty',
         },
         children: [
-            {path: 'home', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)},
-        ]
+            {
+                path: 'home',
+                loadChildren: () =>
+                    import('app/modules/landing/home/home.module').then(
+                        (m) => m.LandingHomeModule
+                    ),
+            },
+        ],
     },
-     //Pedidos routes
-     {
+    //Pedidos routes
+    {
         path: '',
         canMatch: [AuthGuard],
         component: LayoutComponent,
@@ -70,8 +117,14 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children: [
-            {path: 'pedidos/catalogo', loadChildren: () => import('app/modules/pedidos/catalogo/catalogo.module').then(m => m.CatalogoModule)},
-        ]
+            {
+                path: 'pedidos/catalogo',
+                loadChildren: () =>
+                    import('app/modules/pedidos/catalogo/catalogo.module').then(
+                        (m) => m.CatalogoModule
+                    ),
+            },
+        ],
     },
     {
         path: '',
@@ -81,8 +134,14 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children: [
-            {path: 'pedidos/gestion', loadChildren: () => import('app/modules/pedidos/gestionpedidos/gestionpedidos.module').then(m => m.GestionpedidosModule)},
-        ]
+            {
+                path: 'pedidos/gestion',
+                loadChildren: () =>
+                    import(
+                        'app/modules/pedidos/gestionpedidos/gestionpedidos.module'
+                    ).then((m) => m.GestionpedidosModule),
+            },
+        ],
     },
     {
         path: '',
@@ -92,8 +151,48 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children: [
-            {path: 'pedidos/hacerpedido', loadChildren: () => import('app/modules/pedidos/hacerpedidos/hacerpedidos.module').then(m => m.HacerpedidosModule)},
-        ]
+            {
+                path: 'pedidos/hacerpedido',
+                loadChildren: () =>
+                    import(
+                        'app/modules/pedidos/hacerpedidos/hacerpedidos.module'
+                    ).then((m) => m.HacerpedidosModule),
+            },
+        ],
+    },
+    {
+        path: '',
+        canMatch: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: InitialDataResolver,
+        },
+        children: [
+            {
+                path: 'incidencias/listado',
+                loadChildren: () =>
+                    import(
+                        'app/modules/incidencias/listado-incidencias/listado-incidencias.module'
+                    ).then((m) => m.ListadoIncidenciasModule),
+            },
+        ],
+    },
+    {
+        path: '',
+        canMatch: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: InitialDataResolver,
+        },
+        children: [
+            {
+                path: 'incidencias/crear',
+                loadChildren: () =>
+                    import(
+                        'app/modules/incidencias/crear-incidencias/crear-incidencias.module'
+                    ).then((m) => m.CrearIncidenciasModule),
+            },
+        ],
     },
 
     // Admin routes
@@ -105,7 +204,13 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children: [
-            {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
-        ]
-    }
+            {
+                path: 'example',
+                loadChildren: () =>
+                    import('app/modules/admin/example/example.module').then(
+                        (m) => m.ExampleModule
+                    ),
+            },
+        ],
+    },
 ];
