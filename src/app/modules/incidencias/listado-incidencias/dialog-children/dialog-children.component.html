@@ -1,1 +1,17 @@
-<p>dialog-children works!</p>
+<div class="w-96 flex flex-col">
+    <div>
+        <mat-form-field class="w-full">
+            <input
+                matInput
+                placeholder="Nombre Item"
+                [(ngModel)]="childrenName"
+            />
+        </mat-form-field>
+    </div>
+    <div class="flex gap-2">
+        <button mat-button color="warn" (click)="onClose()">Cancelar</button>
+        <button mat-flat-button color="primary" (click)="saveChildrenName()">
+            Guardar
+        </button>
+    </div>
+</div>

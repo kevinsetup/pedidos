@@ -93,16 +93,21 @@ const incidencias: Incidencia[] = [
     styleUrls: ['./listado-incidencias.component.scss'],
 })
 export class ListadoIncidenciasComponent {
-    private _transformer = (node: Incidencia, level: number) => ({
-        expandable: !!node.children && node.children.length > 0,
-        name: node.name,
+    private _transformer = (
+        { children, name, details }: Incidencia,
+        level: number
+    ) => ({
+        expandable: !!children && children.length > 0,
+        name,
         level,
-        details: node.details,
+        details,
+        children,
     });
 
     treeControl = new FlatTreeControl<FlatNode>(
         (node) => node.level,
-        (node) => node.expandable
+        (node) => node.expandable,
+        {}
     );
     treeFlattener = new MatTreeFlattener(
         this._transformer,
@@ -130,10 +135,11 @@ export class ListadoIncidenciasComponent {
             console.log(result);
         });
     }
-    openChildrenDialog() {
+    openChildrenDialog(node: any) {
         const dialogRef = this.dialog.open(DialogChildrenComponent, {});
-        dialogRef.afterClosed().subscribe((result) => {
-            console.log(result);
+        dialogRef.afterClosed().subscribe(({ childrenName: name }) => {
+            node.children.push({ name, children: [] });
+            console.log(node)
         });
     }
 }

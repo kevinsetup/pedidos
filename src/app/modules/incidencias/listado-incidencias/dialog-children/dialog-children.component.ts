@@ -14,7 +14,13 @@ export class DialogChildrenComponent {
         @Inject(MAT_DIALOG_DATA) public data: DialogData
     ) {}
 
-    onClose() {
-        this.dialogRef.close();
+    childrenName: string;
+    onClose(childrenName: string = '') {
+        this.dialogRef.close({ childrenName });
+    }
+    saveChildrenName() {
+        this.childrenName
+            ? this.onClose(this.childrenName)
+            : console.log('Nombre Invalido');
     }
 }
