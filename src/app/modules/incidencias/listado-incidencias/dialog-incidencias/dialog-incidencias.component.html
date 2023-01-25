@@ -1,0 +1,46 @@
+<div class="w-96 flex flex-col gap-4">
+    <div *ngIf="data.details && data.details.length > 0">
+        <ul>
+            <li *ngFor="let dd of data.details">
+                <p>
+                    <span class="font-bold">{{ dd.name }}: </span>
+                    <span>{{ dd.description }}</span>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="!createDetailIsOpen">
+        <button mat-fab extended color="accent" (click)="showNewDetail()">
+            <mat-icon>add</mat-icon>
+            Crear Nuevo Detalle
+        </button>
+    </div>
+    <div *ngIf="createDetailIsOpen">
+        <div class="flex items-start gap-2">
+            <mat-form-field appearance="fill" class="w-full">
+                <input
+                    [(ngModel)]="detalleIncidencia.name"
+                    matInput
+                    placeholder="Nombre Incidencia"
+                />
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-full">
+                <input
+                    [(ngModel)]="detalleIncidencia.description"
+                    matInput
+                    placeholder="Detalle Incidencia"
+                />
+            </mat-form-field>
+        </div>
+        <div class="flex items-center justify-end" (click)="addDetailToData()">
+            <button mat-button clor="accent">Añadir</button>
+        </div>
+    </div>
+    <div class="flex gap-2">
+        <button mat-button color="warn" (click)="onClose()">Cancelar</button>
+
+        <button mat-flat-button color="primary" (click)="saveData()">
+            Guardar
+        </button>
+    </div>
+</div>

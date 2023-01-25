@@ -10,6 +10,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatTreeModule } from '@angular/material/tree';
 import { FuseConfirmationModule } from '@fuse/services/confirmation';
+import { DialogIncidenciasComponent } from './dialog-incidencias/dialog-incidencias.component';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { DialogChildrenComponent } from './dialog-children/dialog-children.component';
 
 const exampleRoutes: Route[] = [
     {
@@ -19,7 +23,7 @@ const exampleRoutes: Route[] = [
 ];
 
 @NgModule({
-    declarations: [ListadoIncidenciasComponent],
+    declarations: [ListadoIncidenciasComponent, DialogIncidenciasComponent, DialogChildrenComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(exampleRoutes),
@@ -32,6 +36,8 @@ const exampleRoutes: Route[] = [
         MatInputModule,
         MatTreeModule,
         FuseConfirmationModule,
+        MatButtonModule,
+        FormsModule,
     ],
 })
 export class ListadoIncidenciasModule {}

@@ -1,9 +1,12 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {
     MatTreeFlatDataSource,
     MatTreeFlattener,
 } from '@angular/material/tree';
+import { DialogChildrenComponent } from './dialog-children/dialog-children.component';
+import { DialogIncidenciasComponent } from './dialog-incidencias/dialog-incidencias.component';
 interface DetalleIncidencia {
     id: number;
     name: string;
@@ -38,10 +41,25 @@ const incidencias: Incidencia[] = [
                             {
                                 id: 5,
                                 name: 'Office 365 / Clave',
+                                details: [
+                                    {
+                                        id: 1,
+                                        name: 'Falta de software',
+                                        description:
+                                            'se necesita atención tal tal ta',
+                                    },
+                                ],
                             },
                             {
                                 id: 6,
                                 name: 'Windows 10',
+                                details: [
+                                    {
+                                        id: 2,
+                                        name: 'Clave de instalación',
+                                        description: 'blablabla-blabla-blabla',
+                                    },
+                                ],
                             },
                         ],
                     },
@@ -79,6 +97,7 @@ export class ListadoIncidenciasComponent {
         expandable: !!node.children && node.children.length > 0,
         name: node.name,
         level,
+        details: node.details,
     });
 
     treeControl = new FlatTreeControl<FlatNode>(
@@ -95,9 +114,26 @@ export class ListadoIncidenciasComponent {
         this.treeControl,
         this.treeFlattener
     );
-    constructor() {
+    constructor(public dialog: MatDialog) {
         this.dataSource.data = incidencias;
     }
 
     hasChild = (_: number, node: FlatNode) => node.expandable;
+    openDetailsDialog(details: any) {
+        const dialogRef = this.dialog.open(DialogIncidenciasComponent, {
+            data: {
+                details,
+            },
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            console.log(result);
+        });
+    }
+    openChildrenDialog() {
+        const dialogRef = this.dialog.open(DialogChildrenComponent, {});
+        dialogRef.afterClosed().subscribe((result) => {
+            console.log(result);
+        });
+    }
 }
