@@ -121,6 +121,7 @@ export class ListadoIncidenciasComponent {
     );
     constructor(public dialog: MatDialog) {
         this.dataSource.data = incidencias;
+        console.log(this.dataSource);
     }
 
     hasChild = (_: number, node: FlatNode) => node.expandable;
@@ -138,8 +139,10 @@ export class ListadoIncidenciasComponent {
     openChildrenDialog(node: any) {
         const dialogRef = this.dialog.open(DialogChildrenComponent, {});
         dialogRef.afterClosed().subscribe(({ childrenName: name }) => {
-            node.children.push({ name, children: [] });
-            console.log(node)
+            if (name) {
+                node.children.push({ name, children: [] });
+                console.log(node);
+            }
         });
     }
 }

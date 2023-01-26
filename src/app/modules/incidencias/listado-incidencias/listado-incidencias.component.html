@@ -2,53 +2,61 @@
     <!-- Main -->
     <div class="flex-auto p-6 sm:p-10">
         <!-- CONTENT GOES HERE -->
-        <h2
-            class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
-        >
-            Incidencias
-        </h2>
-        <fuse-card class="p-4">
-            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-                <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-                    <button mat-icon-button disabled></button>
+        <div class="flex flex-col gap-2">
+            <h2
+                class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
+            >
+                Incidencias
+            </h2>
+            <fuse-card class="p-4">
+                <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                    <mat-tree-node
+                        *matTreeNodeDef="let node"
+                        matTreeNodePadding
+                    >
+                        <button mat-icon-button disabled></button>
 
-                    <div class="flex items-center gap-2">
-                        <span>{{ node.name }}</span>
-                        <button
-                            class="flex items-center gap-2"
-                            mat-icon-button
-                            color="primary"
-                            (click)="openDetailsDialog(node.details)"
-                        >
-                            <mat-icon>info</mat-icon>
-                        </button>
-                    </div>
-                </mat-tree-node>
-                <mat-tree-node
-                    *matTreeNodeDef="let node; when: hasChild"
-                    matTreeNodePadding
-                >
-                    <div class="flex items-center gap-2">
-                        <button
-                            mat-icon-button
-                            matTreeNodeToggle
-                            [attr.aria-label]="'Toggle ' + node.name"
-                        >
-                            <mat-icon class="mat-icon-rtl-mirror">
-                                {{
-                                    treeControl.isExpanded(node)
-                                        ? "expand_more"
-                                        : "chevron_right"
-                                }}
-                            </mat-icon>
-                        </button>
-                        <span> {{ node.name }}</span>
-                        <button mat-icon-button (click)="openChildrenDialog(node)">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                </mat-tree-node>
-            </mat-tree>
-        </fuse-card>
+                        <div class="flex items-center gap-2">
+                            <span>{{ node.name }}</span>
+                            <button
+                                class="flex items-center gap-2"
+                                mat-icon-button
+                                color="primary"
+                                (click)="openDetailsDialog(node.details)"
+                            >
+                                <mat-icon>info</mat-icon>
+                            </button>
+                        </div>
+                    </mat-tree-node>
+                    <mat-tree-node
+                        *matTreeNodeDef="let node; when: hasChild"
+                        matTreeNodePadding
+                    >
+                        <div class="flex items-center gap-2">
+                            <button
+                                mat-icon-button
+                                matTreeNodeToggle
+                                [attr.aria-label]="'Toggle ' + node.name"
+                            >
+                                <mat-icon class="mat-icon-rtl-mirror">
+                                    {{
+                                        treeControl.isExpanded(node)
+                                            ? "expand_more"
+                                            : "chevron_right"
+                                    }}
+                                </mat-icon>
+                            </button>
+                            <span> {{ node.name }}</span>
+                            <button
+                                mat-icon-button
+                                (click)="openChildrenDialog(node)"
+                            >
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </mat-tree-node>
+                </mat-tree>
+            </fuse-card>
+        </div>
     </div>
 </div>
