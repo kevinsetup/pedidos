@@ -193,6 +193,22 @@ export const appRoutes: Route[] = [
                     ).then((m) => m.CrearIncidenciasModule),
             },
         ],
+    },  {
+        path: '',
+        canMatch: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: InitialDataResolver,
+        },
+        children: [
+            {
+                path: 'tablas/listado',
+                loadChildren: () =>
+                    import(
+                        'app/modules/administracion-tablas/listado-tablas/listado-tablas.module'
+                    ).then((m) => m.ListadoTablasModule),
+            },
+        ],
     },
 
     // Admin routes
