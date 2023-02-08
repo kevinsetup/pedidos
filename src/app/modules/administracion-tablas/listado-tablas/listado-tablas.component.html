@@ -1,26 +1,43 @@
 <div class="flex flex-col flex-auto min-w-0">
     <div class="flex-auto p-6 sm:p-10">
-        <div class="grid grid-cols-1 gap-4">
-            <div
-                class="p-4 bg-white shadow rounded-lg"
-                *ngFor="let i of masterTables"
-            >
-                <div class="flex">
-                    <div class="flex flex-col gap-4 flex-none">
-                        <span>
-                            <span class="font-bold">Nombre: </span>
-                            <span>{{ i.Nombre }}</span>
-                        </span>
-                        <span>
-                            <span class="font-bold">Descripcion: </span>
-                            <span>{{ i.Descripcion }}</span>
-                        </span>
-                    </div>
-                    <div class="">
-                        <button class="bg-indigo-700 p-1 rounded-lg text-white">
-                            <mat-icon svgIcon="heroicons_outline:pencil" class="w-4 h-4">
-                            </mat-icon>
-                        </button>
+        <div class="grid gap-4">
+            <div>
+                <div class="text-4xl font-extrabold tracking-tight leading-none">
+                    Creación de Tablas
+                </div>
+            </div>
+            <div>
+                <button (click)="openCreateModal()" mat-fab extended color="primary">
+                    <mat-icon svgIcon="add"></mat-icon>
+                    Crear Nueva Tabla
+                  </button>
+            </div>
+            <div class="grid grid-cols-1 gap-4">
+                <div
+                    class="p-4 bg-white shadow rounded-lg"
+                    *ngFor="let i of masterTables"
+                >
+                    <div class="flex gap-4">
+                        <div class="flex flex-col gap-2 w-full">
+                            <span>
+                                <span class="font-bold">Nombre: </span>
+                                <span>{{ i.Nombre }}</span>
+                            </span>
+                            <span>
+                                <span class="font-bold">Descripcion: </span>
+                                <span>{{ i.Descripcion }}</span>
+                            </span>
+                        </div>
+                        <div class="flex gap-2 flex-none">
+                            <button mat-icon-button color="primary" (click)="updateTable(i.IdTablaMestro)">
+                                <mat-icon svgIcon="heroicons_outline:pencil">
+                                </mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="deleteTable(i.IdTablaMaestro)">
+                                <mat-icon svgIcon="heroicons_outline:trash">
+                                </mat-icon>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

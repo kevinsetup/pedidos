@@ -26,4 +26,8 @@ export class TablasService {
     createMasterDetail(detailBody: any) {
         return this.httpClient.post(`${this.detailTableUrl}`, detailBody);
     }
+
+    deleteMasterTable(idTable: number) {
+        return this.httpClient.delete(`${this.masterTableUrl}/${idTable}`);
+    }
 }
